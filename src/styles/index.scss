@@ -17,14 +17,18 @@ body {
 
 input {
   border: 1px solid transparent;
+  display: block;
   width: 100%;
+  height: 100%;
   font-size: 14px;
   line-height: 20px;
   padding: 2px;
   text-align: center;
+
   &:hover {
     background-color: #eee;
   }
+
   &:focus {
     border: 1px solid forestgreen;
   }
@@ -37,12 +41,11 @@ table {
 td {
   border: 1px solid #ccc;
   padding: 0;
-  min-width: 50px;
+  width: 70px;
+  height: 100%;
 }
 
 tr:first-child td, td:first-child {
-  background-color: #d8e6ce;
-  padding: 1px 3px;
   font-weight: bold;
   text-align: center;
 }
@@ -68,4 +71,50 @@ tr:first-child td, td:first-child {
   border: 1px solid #ccc;
   margin-bottom: 15px;
 }
+
+tr {
+  height: 30px;
+}
+
+.resizable-col, .resizable-row {
+  width: 100%;
+  height: 100%;
+  padding: 1px 3px;
+  line-height: 30px;
+  text-align: center;
+  position: relative;
+}
+
+[class^="resizable"] {
+  i {
+    position: absolute;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 1;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.resizable-col i {
+  top: 0;
+  right: 5px;
+  width: 5px;
+  height: 23px;
+}
+
+.resizable-row i {
+  bottom: 15px;
+  right: 0;
+  width: 23px;
+  height: 7px;
+
+}
+
+.colored {
+  background-color: #d8e6ce;
+}
+
 

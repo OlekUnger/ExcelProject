@@ -1,3 +1,6 @@
+
+
+
 const abc = Array(26).fill('').map((e, i) => String.fromCharCode(i + 65));
 const theTable = document.querySelector('table');
 const thead = document.createElement('thead');
@@ -10,10 +13,12 @@ fragment.appendChild(tbody);
 
 // шапка таблицы
 let tHeadRow = thead.insertRow(-1);
-tHeadRow.insertCell().innerHTML = `<span id="expandRow" class="expandRow"></span>`;
+tHeadRow.insertCell().innerHTML = `<div class="resizable-col colored"><span id="expandRow" class="expandRow"></span></div>`;
 
 for (let i = 0; i < 20; i++) {
-  tHeadRow.insertCell(-1).innerHTML = abc[i];
+  let tHeadCell = tHeadRow.insertCell(-1);
+  tHeadCell.innerHTML = `<div class="resizable-col colored">${abc[i]}<i class="drag">||</i></div>`;
+  tHeadCell.id = `col-${i + 1}`;
 }
 
 // таблица
@@ -22,7 +27,8 @@ for (let i = 0; i <= 10; i++) {
   tBodyRow.id = `row-${i}`;
 
   for (let j = 0; j <= 20; j++) {
-    tBodyRow.insertCell(-1).innerHTML = j ? `<input id="${abc[j - 1]}${i}"/>` : i || 'fx';
+    let mark = i ? i : 'fx';
+    tBodyRow.insertCell(-1).innerHTML = j ? `<input id="${abc[j - 1]}${i}"/>` : `<div class="resizable-row colored">${mark}<i class="drag">=</i></i></div>`;
   }
 }
 
