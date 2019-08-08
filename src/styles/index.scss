@@ -9,13 +9,13 @@ body {
 }
 
 .container {
-  width: 100%;
+  width: 4000px;
   height: 100%;
   margin: 0 auto;
   padding: 0 25px;
 }
 
-input {
+input, textarea {
   border: 1px solid transparent;
   display: block;
   width: 100%;
@@ -23,7 +23,8 @@ input {
   font-size: 14px;
   line-height: 20px;
   padding: 2px;
-  text-align: center;
+  text-align: left;
+  resize: none;
 
   &:hover {
     background-color: #eee;
@@ -41,8 +42,8 @@ table {
 td {
   border: 1px solid #ccc;
   padding: 0;
-  width: 70px;
-  height: 100%;
+  min-width: 50px;
+height: inherit;
 }
 
 tr:first-child td, td:first-child {
@@ -59,6 +60,8 @@ tr:first-child td, td:first-child {
   border-right: 5px solid #d8e6ce;
   border-top: 5px solid #d8e6ce;
   cursor: pointer;
+  position: absolute;
+  bottom: 4px;
 }
 
 .hidden {
@@ -66,7 +69,7 @@ tr:first-child td, td:first-child {
 }
 
 .menu {
-  width: 100%;
+  max-width: 1000px;
   height: 25px;
   border: 1px solid #ccc;
   margin-bottom: 15px;
@@ -86,12 +89,16 @@ tr {
 }
 
 [class^="resizable"] {
+  min-height: 30px;
   i {
     position: absolute;
     cursor: pointer;
     opacity: 0;
     z-index: 1;
-
+    &::before {
+      content: '||';
+      position: absolute;
+    }
     &:hover {
       opacity: 1;
     }
@@ -100,21 +107,38 @@ tr {
 
 .resizable-col i {
   top: 0;
-  right: 5px;
-  width: 5px;
-  height: 23px;
+  right: 0px;
+  width: 10px;
+  height: 100%;
+  &::before {
+    bottom: 0;
+    left: 0;
+  }
+
 }
 
 .resizable-row i {
-  bottom: 15px;
+  bottom: 0;
   right: 0;
-  width: 23px;
-  height: 7px;
-
+  width: 100%;
+  height: 10px;
+  &::before {
+    transform: rotate(-90deg);
+    bottom: -10px;
+    right: 8px;
+  }
 }
 
 .colored {
   background-color: #d8e6ce;
 }
+
+
+tr:first-child td, td:first-child {
+  background-color: #d8e6ce;
+  font-weight: bold;
+  text-align: center;
+}
+
 
 
