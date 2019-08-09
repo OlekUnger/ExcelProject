@@ -9,11 +9,11 @@ fragment.appendChild(theTable);
 // шапка таблицы
 
 let tHeadRow = theTable.insertRow(-1);
-tHeadRow.insertCell().innerHTML = `<div class="resizable-col"><span id="expandRow" class="expandRow"></span></div>`;
+tHeadRow.insertCell().innerHTML = `<div class="resizable-col"><span id="expand-row" class="expand-row"></span></div>`;
 
 for (let i = 0; i < 20; i++) {
   let tHeadCell = tHeadRow.insertCell(-1);
-  tHeadCell.innerHTML = `<div class="resizable-col">${abc[i]}<i class="col-${abc[i]} drag dragX"></i></div>`;
+  tHeadCell.innerHTML = `<div class="resizable-col">${abc[i]}<i data-drag="col-${abc[i]}" class="drag dragX"></i></div>`;
   tHeadCell.id = `col-${abc[i]}`;
 }
 
@@ -25,14 +25,14 @@ for (let i = 0; i <= 10; i++) {
   for (let j = 0; j <= 20; j++) {
     let mark = i ? i : 'fx';
     let tBodyCell = tBodyRow.insertCell(-1);
-    tBodyCell.innerHTML = j ? `<textarea id="${abc[j - 1]}${i}"></textarea>` : `<div class="resizable-row row-${i}">${mark}<i class="row-${i} drag dragY"></i></div>`;
+    tBodyCell.innerHTML = j ? `<textarea id="${abc[j - 1]}${i}"></textarea>` : `<div class="resizable-row row-${i}">${mark}<i data-drag="row-${i}" class="drag dragY"></i></div>`;
   }
 }
 
 container.appendChild(fragment);
 fragment = null;
 
-const exp = document.querySelector('#expandRow');
+const exp = document.querySelector('#expand-row');
 const fx = document.querySelector('#row-0');
 fx.classList.add('hidden');
 
