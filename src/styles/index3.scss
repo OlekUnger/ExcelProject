@@ -1,0 +1,134 @@
+$greyBorder: 1px solid #ccc;
+$lightGreen: #d8e6ce;
+$cellWidth: 100px;
+$cellHeight: 30px;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.table-container {
+  width: 100%;
+  height: 800px;
+  overflow-y: scroll;
+  overflow-x: scroll;
+}
+
+#excelTable {
+  width: auto;
+  height: auto;
+  //display: flex;
+  //position: relative;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 25px;
+}
+
+
+.table {
+  &-container {
+    position: relative;
+  }
+  &-numeric-column {
+    min-width: 50px;
+
+    & .resizable {
+      width: 100%;
+    }
+  }
+
+  &-content {
+    width: 100%;
+    & .resizable {
+      width: $cellWidth;
+    }
+  }
+
+  &-head {
+    width: 100%;
+    height: 30px;
+
+    & .resizable {
+      width: $cellWidth;
+    }
+  }
+
+}
+
+.row {
+  width: 100%;
+  height: 30px;
+  display: flex;
+}
+
+.cell {
+  height: 100%;
+  width: $cellWidth;
+  border: $greyBorder;
+
+  &-item {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.resizable {
+  font-weight: bold;
+  text-align: center;
+  background-color: $lightGreen;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: $greyBorder;
+}
+
+
+.hidden {
+  display: none;
+}
+
+.menu {
+  max-width: 1000px;
+  height: 25px;
+  border: $greyBorder;
+  margin-bottom: 15px;
+}
+
+.formula {
+  max-width: 1000px;
+  border: $greyBorder;
+  position: relative;
+  padding: 0 0 0 40px;
+  margin-bottom: 15px;
+}
+
+.formula span {
+  position: absolute;
+  display: block;
+  background-color: $lightGreen;
+  height: 100%;
+  width: 40px;
+  top: 0;
+  left: 0;
+}
+
+.fixed {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.colored {
+  background-color: #d8e6ce;
+}
