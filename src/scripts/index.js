@@ -1,5 +1,5 @@
-import '../styles/index2.scss';
-import './table4';
+import '../styles/index.scss';
+import './table';
 import './resize-fields';
 
 

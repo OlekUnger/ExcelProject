@@ -1,5 +1,13 @@
+$greyBorder: 1px solid #ccc;
+$lightGreen: #d8e6ce;
+$cellWidth: 100px;
+$cellHeight: 30px;
+
 * {
   box-sizing: border-box;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
 }
 
 body {
@@ -8,61 +16,121 @@ body {
   margin: 0;
 }
 
-.container {
+.table-container {
+  width: 100%;
+  height: 800px;
+  overflow-y: scroll;
+  overflow-x: scroll;
+}
+
+#excelTable {
+  //width: auto;
   width: 4000px;
+  height: auto;
+  display: flex;
+  position: relative;
+}
+
+.container {
+  width: 100%;
   height: 100%;
   margin: 0 auto;
   padding: 0 25px;
 }
 
-input, textarea {
-  border: 1px solid transparent;
-  display: block;
+//.topper {
+//  height: $cellHeight;
+//  width: 100%;
+//  position: absolute;
+//  top: 0;
+//  left: 0;
+//  background-color: $lightGreen;
+//  border: $greyBorder;
+//  z-index: 1;
+//}
+
+.table {
+  &-container {
+    //width: 100%;
+    position: relative;
+  }
+
+  &-numeric-column {
+    min-width: 50px;
+    & div:first-child {
+      @extend .resizable;
+
+      background-color: $lightGreen;
+    }
+
+    & .resizable {
+      min-width: 30px;
+    }
+  }
+
+  &-content {
+    width: 100%;
+
+    & .resizable {
+      min-width: $cellWidth;
+    }
+  }
+}
+
+.row {
   width: 100%;
+  height: 30px;
+  min-height: 30px;
+  display: flex;
+}
+
+.cell {
   height: 100%;
-  font-size: 14px;
-  line-height: 20px;
-  padding: 2px;
-  text-align: left;
-  resize: none;
+  min-width: $cellWidth;
+  border: $greyBorder;
 
-  &:hover {
-    background-color: #eee;
-  }
-
-  &:focus {
-    border: 1px solid forestgreen;
+  &-item {
+    height: 100%;
+    width: 100%;
+    padding: 5px;
   }
 }
 
-table {
-  border-collapse: collapse;
-}
-
-td {
-  border: 1px solid #ccc;
-  padding: 0;
-  min-width: 50px;
-height: inherit;
-}
-
-tr:first-child td, td:first-child {
+.resizable {
   font-weight: bold;
   text-align: center;
+  background-color: $lightGreen;
+  min-height: $cellHeight;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: $greyBorder;
+  position: relative;
+
+  &::before {
+    position: absolute;
+    content: "";
+    opacity: 0;
+    z-index: 1;
+  }
+
+  &-x::before {
+    top: 0;
+    right: 0px;
+    width: 10px;
+    height: 100%;
+    cursor: e-resize;
+  }
+
+  &-y::before {
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 10px;
+    cursor: s-resize;
+  }
 }
 
-.expand-row {
-  display: block;
-  width: 10px;
-  height: 10px;
-  border-left: 5px solid green;
-  border-bottom: 5px solid green;
-  border-right: 5px solid #d8e6ce;
-  border-top: 5px solid #d8e6ce;
-  cursor: pointer;
-  position: absolute;
-  bottom: 4px;
-}
 
 .hidden {
   display: none;
@@ -71,74 +139,36 @@ tr:first-child td, td:first-child {
 .menu {
   max-width: 1000px;
   height: 25px;
-  border: 1px solid #ccc;
+  border: $greyBorder;
   margin-bottom: 15px;
 }
 
-tr {
-  height: 30px;
-}
-
-.resizable-col, .resizable-row {
-  width: 100%;
-  height: 100%;
-  padding: 1px 3px;
-  line-height: 30px;
-  text-align: center;
+.formula {
+  max-width: 1000px;
+  border: $greyBorder;
   position: relative;
+  padding: 0 0 0 40px;
+  margin-bottom: 15px;
 }
 
-[class^="resizable"] {
-  min-height: 30px;
-  i {
-    position: absolute;
-    cursor: pointer;
-    opacity: 0;
-    z-index: 1;
-    &::before {
-      content: '||';
-      position: absolute;
-    }
-    &:hover {
-      opacity: 1;
-    }
-  }
-}
-
-.resizable-col i {
-  top: 0;
-  right: 0px;
-  width: 10px;
+.formula span {
+  position: absolute;
+  display: block;
+  background-color: $lightGreen;
   height: 100%;
-  &::before {
-    bottom: 0;
-    left: 0;
-  }
-
+  width: 40px;
+  top: 0;
+  left: 0;
 }
 
-.resizable-row i {
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  height: 10px;
-  &::before {
-    transform: rotate(-90deg);
-    bottom: -10px;
-    right: 8px;
-  }
+.fixed {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
+
 
 .colored {
   background-color: #d8e6ce;
 }
-
-
-tr:first-child td, td:first-child {
-  background-color: #d8e6ce;
-  font-weight: bold;
-  text-align: center;
-}
-
-
 
